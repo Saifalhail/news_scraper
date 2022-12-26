@@ -5,7 +5,7 @@
 </head>
 
 <body
-    style="background-color: transparent; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;">
+    style="background-color: transparent; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none; text-align: center;">
     <div class="formbold-form-wrapper">
         <table class="nl-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation"
             style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: transparent;">
@@ -46,20 +46,20 @@
         </div>
         <br><br>
 
-        <form action="" method="POST">
+        <form action="result" id="urlsForm" method="POST">
             <div class="formbold-input-flex">
                 <div>
                     <label for="mena-url" class="formbold-form-label"> MENA Politics, Security, and Defense </label>
                     <div>
                         <fieldset class="inputs-set" id="mena-url-list" class="input-field">
-                            <div class="mena-url-input__w">
+                            <div class="mena-url-input__w" style="display: flex;">
                                 <input type="text" name="mena-url" id="url-list"
                                     placeholder="https://www.aljazeera.com/economy/2022/12/12/cvs-walgreens-finalise-10bn-in-deals-to-settle-opioid-lawsuits"
                                     class="formbold-form-input" />
-                            </div><br>
-                            <button class="btn-add-input" onclick="addUrlField('mena')" type="button">
-                                +
-                            </button>
+                                    <button class="btn-add-input"  onclick="addUrlField('mena')" type="button">
+                                        +
+                                    </button>
+                            </div>
                         </fieldset>
                     </div>
                 </div>
@@ -67,52 +67,55 @@
 
             <div class="formbold-input-flex">
                 <div>
-                    <label for="firstname" class="formbold-form-label"> International Relations, Security</label>
+                    <label for="int-url" class="formbold-form-label"> International Relations, Security</label>
                     <div>
                         <fieldset class="inputs-set" id="international-url-list" class="input-field">
-                            <div class="international-url-input__w">
-                                <input type="text" name="firstname" id="firstname"
+                            <div class="international-url-input__w" style="display: flex;">
+                                <input type="text" name="int-url" id="int-url"
                                     placeholder="https://www.bbc.com/news/world-europe-63921007"
                                     class="formbold-form-input" />
-                            </div><br>
+                                    <button class="btn-add-input" onclick="addUrlField('international')" type="button">
+                                        +
+                                    </button>
+                            </div>
 
-                            <button class="btn-add-input" onclick="addUrlField('international')" type="button">
-                                +
-                            </button>
                         </fieldset>
                     </div>
                 </div>
             </div>
             <div class="formbold-input-flex">
                 <div>
-                    <label for="firstname" class="formbold-form-label"> Procurement and Defense Industry</label>
+                    <label for="proc-url" class="formbold-form-label"> Procurement and Defense Industry</label>
                     <div>
                         <fieldset class="inputs-set" id="procurement-url-list" class="input-field">
-                            <div class="procurement-url-input__w">
-                                <input type="text" name="firstname" id="firstname"
+                            <div class="procurement-url-input__w" style="display: flex;">
+                                <input type="text" name="proc-url" id="proc-url"
                                     placeholder="https://www.foxbusiness.com/lifestyle/despite-cooling-us-housing-market-florida-still-top-spot-americans-looking-move-study"
                                     class="formbold-form-input" />
-                            </div><br>
-
-                            <button class="btn-add-input" onclick="addUrlField('procurement')" type="button">
-                                +
-                            </button>
+                                    <button class="btn-add-input" onclick="addUrlField('procurement')" type="button">
+                                        +
+                                    </button>
+                            </div>
                         </fieldset>
                     </div>
                 </div>
             </div>
-            <button class="formbold-btn" type="submit">
-                Start Scraper
-            </button>
+            <div style="margin-top: 2em; margin-bottom: 5em;">
+                <button class="formbold-btn" type="submit">
+                    Start Scraper
+                </button>
+            </div>
         </form>
     </div>
 </body>
+
 </html>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
     .main {
         padding-top: 80px;
+        padding-bottom: 80px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -145,19 +148,38 @@
     .btn-del-input {
         border: none;
         padding: 8px 12px;
+        float: right;
+        position: relative;
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        border: 2px solid rgb(0, 0, 0);
+        background-color: #fff;
+        cursor: pointer;
+        box-shadow: 0 0 10px #333;
+        overflow: hidden;
+        transition: .3s;
     }
 
     .btn-submit {
-        background-color: rgb(152, 247, 199);
+        background-color: rgb(203, 247, 152);
     }
 
     .btn-add-input {
-        background-color: rgb(127, 187, 255);
+        background-color: #d0b888;
         margin-right: 4px;
+        font-size: 20px;
+        float: right;
+        margin-left: 10px;
     }
 
     .btn-del-input {
-        background-color: rgb(255, 127, 148);
+        background-color: rgba(248, 70, 70, 0.87);
+        font-size: 25px;
+        float: right;
+        margin-right: 4px;
+        margin-left: 10px;
+        color: #FFFFFF;
     }
 
     * {
@@ -191,7 +213,7 @@
     }
 
     .formbold-input-flex>div {
-        width: 50%;
+        width: 100%;
     }
 
     .formbold-input-radio-wrapper {
@@ -273,6 +295,7 @@
 
     .formbold-form-input::placeholder {
         color: #d0b888;
+        opacity: 0.7;
     }
 
     .formbold-form-input:focus {
@@ -291,7 +314,7 @@
     .formbold-btn {
         text-align: center;
         width: 100%;
-        font-size: 16px;
+        font-size: 20px;
         border-radius: 5px;
         padding: 14px 25px;
         border: none;
@@ -300,6 +323,7 @@
         color: white;
         cursor: pointer;
         margin-top: 25px;
+        font-weight: bold;
     }
 
     .formbold-btn:hover {
@@ -308,42 +332,51 @@
 </style>
 
 <script>
-    
+
 
     function addUrlField(section) {
-        var myForm = null; 
-         // Create elements
-         const nef_wrapper = document.createElement("div");
-         const nef = document.createElement("input");
-         const btnAdd = document.createElement("button");
-         const btnDel = document.createElement("button");
+        var myForm = null;
+        // Create elements
+        const nef_wrapper = document.createElement("div");
+        const nef = document.createElement("input");
+        nef.classList.add('formbold-form-input')
+        const btnAdd = document.createElement("button");
+        const btnDel = document.createElement("button");
+        btnDel.classList.add('btn-del-input')
 
         if (section == 'mena') {
             // Add Class to main wrapper
             myForm = document.getElementById("mena-url-list");
             nef_wrapper.classList.add("mena-url-input__w");
+            nef.type = "url";
+            nef.name = "mena-url";
+            nef.setAttribute("required", "");
+            
         } else if (section == 'international') {
             myForm = document.getElementById("international-url-list");
             // Add Class to main wrapper
             nef_wrapper.classList.add("international-url-input__w");
+            nef.type = "url";
+            nef.name = "int-url";
+            nef.setAttribute("required", "");
+           
         } else if (section == 'procurement') {
             myForm = document.getElementById("procurement-url-list");
             // Add Class to main wrapper
             nef_wrapper.classList.add("procurement-url-input__w");
+            nef.type = "url";
+            nef.name = "proc-url";
+            nef.setAttribute("required", "");
+         
 
         }
 
         // set button DEL
         btnDel.type = "button";
-        btnDel.classList.add("btn-del-input");
         btnDel.innerText = "-";
 
-        // set Input field
-        nef.type = "url";
-        nef.name = "url_field";
-        nef.setAttribute("required", "");
-        nef.classList.add("input-field");
-
+        nef_wrapper.style.display = 'flex'
+        nef_wrapper.style.margin = '10px'
         //append elements to main wrapper
         nef_wrapper.appendChild(nef);
         nef_wrapper.appendChild(btnAdd);
