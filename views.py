@@ -30,4 +30,3 @@ def result():
     extracted1, extracted2, extracted3 = scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc)
     return render_template("index.html", date=pull_date, articles_mena=extracted1, articles_int=extracted2, articles_proc=extracted3)
 
-
