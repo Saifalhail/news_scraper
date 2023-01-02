@@ -1,18 +1,52 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, g, render_template, request, session, redirect, url_for, abort
 from datetime import datetime
 from scraper import scraper
-
 
 pull_date = datetime.now().strftime('%d-%b-%Y')
 
 views = Blueprint(__name__, "views")
 
+class User:
+    def __init__ (self, id, username, password):
+        self.id = id
+        self.username = username
+        self.password = password
 
 
+users = []
+users.append(User(id = 1, username='bhrd', password='BH@123456'))   
 
 
-@views.route("/")
+@views.before_request
+def before_request():
+    g.user = None
+
+    if 'user_id' in session:
+        user = [x for x in users if x.id == session['user_id']][0]
+        g.user = user
+
+@views.route('/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        session.pop('user_id', None)
+
+        username = request.form['username']
+        password = request.form['password']
+        
+        user = [x for x in users if x.username == username][0]
+        if user and user.password == password:
+            session['user_id'] = user.id
+            return redirect(url_for('views.home'))
+
+        return redirect(url_for('views.login'))
+
+    return render_template('login.html')
+
+
+@views.route("/home")
 def home():
+    if not g.user:
+        return redirect(url_for('views.login'))
     return render_template("homepage.html")
 
 
