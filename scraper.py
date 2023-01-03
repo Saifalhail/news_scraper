@@ -1,5 +1,5 @@
 import newspaper
-from newspaper import Article
+from newspaper import Article, Config
 from datetime import datetime
 
 # list_of_urls_mena = ['https://www.aljazeera.com/news/2022/12/6/n-korea-orders-new-artillery-firings-over-us-s-korea-drills',
@@ -15,6 +15,12 @@ from datetime import datetime
 #                 'https://www.aljazeera.com/news/2022/12/11/the-ten-talking-points-of-the-world-cup-so-far',
 #                 'https://www.aljazeera.com/sports/2022/12/12/the-freestyle-footballer-with-a-difference-wowing-world-cup-fans']
 
+user_agent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:78.0) Gecko/20100101 Firefox/78.0'
+
+config = Config()
+config.browser_user_agent = user_agent
+config.request_timeout = 10
+
 def scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc):
 
     extracted1 = {'articles': []}
@@ -22,7 +28,7 @@ def scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc):
     extracted3 = {'articles': []}
 
     for url in list_of_urls_mena:
-        article = newspaper.Article(url="%s" % (url), language='en')
+        article = newspaper.Article(url="%s" % (url), language='en', config=config)
         article.download()
         article.parse()
         if article.publish_date is not None:
@@ -31,7 +37,7 @@ def scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc):
         extracted1['articles'].append(obj)
 
     for url in list_of_urls_int:
-        article = newspaper.Article(url="%s" % (url), language='en')
+        article = newspaper.Article(url="%s" % (url), language='en', config=config)
         article.download()
         article.parse()
         if article.publish_date is not None:
@@ -40,7 +46,7 @@ def scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc):
         extracted2['articles'].append(obj)
 
     for url in list_of_urls_proc:
-        article = newspaper.Article(url="%s" % (url), language='en')
+        article = newspaper.Article(url="%s" % (url), language='en', config=config)
         article.download()
         article.parse()
         if article.publish_date is not None:
