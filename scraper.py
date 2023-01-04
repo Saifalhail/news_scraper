@@ -33,6 +33,7 @@ def scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc):
         try:
             article.download()
             article.parse()
+            time.sleep(2)
         except:
             time.sleep(5)
         if article.publish_date is not None:
@@ -45,6 +46,7 @@ def scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc):
         try:
             article.download()
             article.parse()
+            time.sleep(2)
         except:
             time.sleep(5)
         if article.publish_date is not None:
@@ -57,6 +59,7 @@ def scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc):
         try:
             article.download()
             article.parse()
+            time.sleep(2)
         except:
             time.sleep(5)
         if article.publish_date is not None:
