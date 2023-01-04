@@ -1,6 +1,7 @@
 import newspaper
 from newspaper import Article, Config
 from datetime import datetime
+import time
 
 # list_of_urls_mena = ['https://www.aljazeera.com/news/2022/12/6/n-korea-orders-new-artillery-firings-over-us-s-korea-drills',
 # 				'https://www.aljazeera.com/news/2022/12/5/un-delays-decision-on-myanmar-representation-over-russian-stance',
@@ -29,8 +30,11 @@ def scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc):
 
     for url in list_of_urls_mena:
         article = newspaper.Article(url="%s" % (url), language='en', config=config)
-        article.download()
-        article.parse()
+        try:
+            article.download()
+            article.parse()
+        except:
+            time.sleep(5)
         if article.publish_date is not None:
             publish_date = datetime.strptime(str(article.publish_date), '%Y-%m-%d %H:%M:%S').strftime('%d-%b-%Y')
         obj = {'title': article.title, 'top_image': article.top_image, 'publish_date': publish_date, 'url': article.url}
@@ -38,8 +42,11 @@ def scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc):
 
     for url in list_of_urls_int:
         article = newspaper.Article(url="%s" % (url), language='en', config=config)
-        article.download()
-        article.parse()
+        try:
+            article.download()
+            article.parse()
+        except:
+            time.sleep(5)
         if article.publish_date is not None:
             publish_date = datetime.strptime(str(article.publish_date), '%Y-%m-%d %H:%M:%S').strftime('%d-%b-%Y')
         obj = {'title': article.title, 'top_image': article.top_image, 'publish_date': publish_date, 'url': article.url}
@@ -47,8 +54,11 @@ def scraper(list_of_urls_mena, list_of_urls_int, list_of_urls_proc):
 
     for url in list_of_urls_proc:
         article = newspaper.Article(url="%s" % (url), language='en', config=config)
-        article.download()
-        article.parse()
+        try:
+            article.download()
+            article.parse()
+        except:
+            time.sleep(5)
         if article.publish_date is not None:
             publish_date = datetime.strptime(str(article.publish_date), '%Y-%m-%d %H:%M:%S').strftime('%d-%b-%Y')
         obj = {'title': article.title, 'top_image': article.top_image, 'publish_date': publish_date, 'url': article.url}
