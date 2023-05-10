@@ -2,7 +2,7 @@ from flask import Blueprint, g, render_template, request, session, redirect, url
 from datetime import datetime
 from scraper import scraper
 
-pull_date = datetime.now().strftime('%d-%b-%Y')
+pull_date = datetime.now().strftime('%d %B %Y')
 
 views = Blueprint(__name__, "views")
 
